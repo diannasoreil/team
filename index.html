@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" id="oranda" class="dark">
+    <head>
+        <title>cargo-create-cli</title>
+        
+        
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <meta name="description" content="(wip) create a new rust cli easily" />
+            <meta property="og:description" content="(wip) create a new rust cli easily" />
+        
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="cargo-create-cli" />
+        
+        
+        
+        <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+        <link rel="stylesheet" href="/team/oranda-v0.2.0.css" />
+        
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-body">
+                
+                    <div class="repo_banner">
+                        <a href="https://github.com/shadows-withal/cargo-create-cli">
+                            <div class="github-icon" aria-hidden="true"></div>
+                            Check out our GitHub!
+                        </a>
+                    </div>
+                
+
+                <main>
+                    <header>
+                        
+                        <h1 class="title">cargo-create-cli</h1>
+                        
+    <nav class="nav">
+        <ul>
+            <li><a href="/team/">Home</a></li>
+
+            
+
+            
+
+            
+
+            
+                <li><a href="/team/funding/">Funding</a></li>
+            
+
+            
+        </ul>
+    </nav>
+
+                    </header>
+
+                    
+
+<h1>Rust teams structure</h1>
+<p>This repository contains the structure of the Rust teams. The repository is
+automatically synchronized with:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th align="center">Synchronized every</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://buildbot2.rust-lang.org/homu" rel="noopener noreferrer">@bors</a></td>
+<td align="center"><em>In real time</em></td>
+<td><a href="https://github.com/rust-lang/homu/blob/master/homu/auth.py" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rust-lang-nursery/crater" rel="noopener noreferrer">Crater and @craterbot</a></td>
+<td align="center"><em>In real time</em></td>
+<td><a href="https://github.com/rust-lang-nursery/crater/blob/master/src/server/auth.rs" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td><a href="https://perf.rust-lang.org" rel="noopener noreferrer">Perf and @rust-timer</a></td>
+<td align="center"><em>In real time</em></td>
+<td><a href="https://github.com/rust-lang-nursery/rustc-perf/blob/master/site/src/server.rs" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td><a href="https://rfcbot.rs" rel="noopener noreferrer">@rfcbot</a></td>
+<td align="center">5 minutes</td>
+<td><a href="https://github.com/anp/rfcbot-rs/blob/master/src/teams.rs" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td>GitHub teams membership</td>
+<td align="center"><em>Shortly after merge</em></td>
+<td><a href="https://github.com/rust-lang/sync-team" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td>Mailing lists and aliases (<code>@rust-lang.org</code>, <code>@crates.io</code>)</td>
+<td align="center"><em>Shortly after merge</em></td>
+<td><a href="https://github.com/rust-lang/sync-team" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td>Zulip user group membership</td>
+<td align="center"><em>Shortly after merge</em></td>
+<td><a href="https://github.com/rust-lang/sync-team" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+<tr>
+<td><a href="https://www.rust-lang.org/governance" rel="noopener noreferrer">Governance section on the website</a></td>
+<td align="center">2 minutes</td>
+<td><a href="https://github.com/rust-lang/www.rust-lang.org/blob/master/src/teams.rs" rel="noopener noreferrer">Integration source</a></td>
+</tr>
+</tbody>
+</table>
+<p>If you need to add or remove a person from a team, send a PR to this
+repository.  After it's merged, their account will be added/removed
+from all the supported services.</p>
+<h2>Documentation</h2>
+<ul>
+<li><a href="docs/toml-schema.md" rel="noopener noreferrer">TOML schema reference</a></li>
+</ul>
+<h2>Using the CLI tool</h2>
+<p>It's possible to interact with this repository through its CLI tool.</p>
+<h3>Verifying the integrity of the repository</h3>
+<p>This repository contains some sanity checks to avoid having stale or broken
+data. You can run the checks locally with the <code>check</code> command:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run check
+</span></pre>
+
+<p>Note that some of these checks will be skipped due to missing API tokens.</p>
+<h3>Adding a person to the repository</h3>
+<p>It's possible to fetch the public information present in a GitHub profile and
+store it in a person's TOML file:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run add-person &lt;github-username&gt;
+</span></pre>
+
+<p>You can also add additional information, such as someone's Discord or Zulip ID by adding additional fields to their <code>.toml</code> file.</p>
+<p>To determine someone's Zulip ID, find them in the list of people on the
+right-hand side in Zulip, click the "three dots" menu, and copy the 'User ID'
+into the toml file:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">zulip-id = &lt;user id&gt;
+</span></pre>
+
+<h3>Querying information out of the repository</h3>
+<p>There are a few CLI commands that allow you to get some information generated
+from the data in the repository.</p>
+<p>You can get a list of all the people in a team:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run dump-team all
+</span></pre>
+
+<p>You can get a list of all the email addresses subscribed to a list:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run dump-list all@rust-lang.org
+</span></pre>
+
+<p>You can get a list of all the users with a permission:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run dump-permission perf
+</span></pre>
+
+<p>You can generate <a href="https://github.com/rust-lang/www.rust-lang.org" rel="noopener noreferrer">www.rust-lang.org</a>'s locales/en-US/tools.ftl file by running</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run dump-website
+</span></pre>
+
+<p>The website will automatically load new teams added here, however they cannot be translated unless <code>tools.ftl</code> is also updated.</p>
+<h3>Building the static API</h3>
+<p>You can build locally the content of <code>https://team-api.infra.rust-lang.org/v1/</code>
+by running the command:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">cargo run static-api output-dir/
+</span></pre>
+
+<p>The content will be placed in <code>output-dir/</code>.</p>
+<h3>Encrypting email addresses</h3>
+<p>If an email address in a list needs to be confidential it's possible to encrypt
+it. Encrypted email addresses look like this:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">encrypted+3eeedb8887004d9a8266e9df1b82a2d52dcce82c4fa1d277c5f14e261e8155acc8a66344edc972fa58b678dc2bcad2e8f7c201a1eede9c16639fe07df8bac5aa1097b2ad9699a700edb32ef192eaa74bf7af0a@rust-lang.invalid
+</span></pre>
+
+<p>The production key is accessible to select Infrastructure Team members, so if
+you need to add an encrypted email address you'll need to reach out to that
+team. The key is stored in the following parameter on AWS SSM Parameter Store:</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">/prod/sync-team/email-encryption-key
+</span></pre>
+
+<p>The <code>cargo run encrypt-email</code> and <code>cargo run decrypt-email</code> interactive CLI
+commands are available for infra team members to interact with encrypted
+emails. The <code>rust_team_data</code> (with the <code>email-encryption</code> feature enabled) also
+provides a module to programmatically encrypt and decrypt.</p>
+
+
+                </main>
+            </div>
+
+            <footer>
+                
+                    <a href="https://github.com/shadows-withal/cargo-create-cli"><div class="github-icon" aria-hidden="true"></div></a>
+                
+                <span>
+                    cargo-create-cli
+                </span>
+            </footer>
+        </div>
+
+        
+        
+
+        
+
+
+    </body>
+</html>
